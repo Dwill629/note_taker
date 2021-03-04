@@ -17,3 +17,12 @@ app.get('/api/notes', (req, res) => fs.readFile(path.join(__dirname, '/db/db.jso
   if (err) throw err;
   res.send(data)
 }))
+
+app.post('/api/notes', (req, res) => {
+    req.body.id = uuidv4();
+    const newN = req.body;
+    dataB.push(newN);
+    fs.writeFileSync('./db/db.json', JSON.stringify(dataB));
+    res.json(dataB);
+  
+})
