@@ -26,3 +26,10 @@ app.post('/api/notes', (req, res) => {
     res.json(dataB);
   
 })
+
+app.delete('/api/notes/:id', (req, res) => {
+    const id = req.params.id;
+    dataB = dataB.filter(notes => notes.id != id);
+    fs.writeFileSync('./db/db.json', JSON.stringify(dataB));
+    res.json(dataB);
+})
